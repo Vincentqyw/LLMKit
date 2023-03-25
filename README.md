@@ -3,7 +3,7 @@ Streamline your AI development with LLMKit!
 
 LLMKit is a powerful platform that collects, analyzes, and builds tools from the most relevant and recent deep learning and machine learning GitHub repositories, with a specific focus on deep learning models. The mission is to streamline AI development and create world-changing tools that empower developers, researchers, and organizations.
 
-##Overview
+## Overview
 LLMKit Roadmap:
 
 ### LLMKit collects the most relevant and recent deep learning and machine learning GitHub repositories on a daily basis.
@@ -20,10 +20,10 @@ cd LLMKit
 Contribution
 We welcome contributions from the community! If you have found a new repository, tool, or technique that is relevant to large language models and would like to add it to LLMKit, please submit a pull request or open an issue with the details.
 
-##License
+## License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-##Acknowledgments
+## Acknowledgments
 We would like to express our gratitude to the open-source community, AI researchers, and developers who have contributed to the projects and repositories that have inspired and shaped LLMKit. Your work is the foundation of the progress we aim to achieve.
 
-##Join us on our journey as we create powerful tools to revolutionize the world of AI and large language models!
+## Join us on our journey as we create powerful tools to revolutionize the world of AI and large language models!
