@@ -8,8 +8,6 @@ LLMKit is a powerful platform that collects, analyzes, and builds tools from the
 ## LLMKit Roadmap:
 
 ### LLMKit collects the most relevant and recent deep learning and machine learning GitHub repositories on a daily basis.
-### Analysis & Tool Building: The LLMKit analyzes the collected repositories and builds essential tools to aid AI development.
-### World-Changing Tools: In the final stage, we create powerful, groundbreaking tools using the knowledge and experience gained from the previous stages, striving to change the world through AI-driven solutions.
 
 ## Getting Started
 To get started with LLMKit, simply clone this repository and follow the instructions provided in the respective folders for each tool.
