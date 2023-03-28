@@ -11,7 +11,7 @@ class ChatApp:
         self.messages = [
             {
                 "role": "system",
-                "content": "You are a coding tutor bot to help user write and optimize python code."
+                "content": "You are a coding tutor bot to help user write and optimize python code.",
             },
         ]
 
@@ -21,16 +21,18 @@ class ChatApp:
 
         # Call the OpenAI API with the current messages to get a response
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
-            messages=self.messages
+            model="gpt-3.5-turbo", messages=self.messages
         )
 
         # Extract the assistant's message from the response and add it to the messages list
         assistant_message = response["choices"][0]["message"]
-        self.messages.append({"role": "assistant", "content": assistant_message.content})
+        self.messages.append(
+            {"role": "assistant", "content": assistant_message.content}
+        )
 
         # Return the assistant's message
         return assistant_message
+
 
 if __name__ == "__main__":
     # Replace with your OpenAI API key
