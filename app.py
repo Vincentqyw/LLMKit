@@ -1,40 +1,37 @@
 import gradio as gr
 import requests
-
-# Replace YOUR_GITHUB_TOKEN with your personal access token
-GITHUB_TOKEN = "YOUR_GITHUB_TOKEN"
-GITHUB_API_URL = "https://api.github.com/search/repositories"
-
+import pandas as pd
 
 def get_github_repos(query):
-    headers = {
-        "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github+json",
-    }
+    headers = {"Accept": "application/vnd.github+json"}
     params = {
         "q": query,
         "sort": "stars",
         "order": "desc",
-        "per_page": 5,
+        "per_page": 50,
     }
 
+    GITHUB_API_URL = "https://api.github.com/search/repositories"
     response = requests.get(GITHUB_API_URL, headers=headers, params=params)
+
+
     response_json = response.json()
+    print(response_json)
 
     if "items" in response_json:
         repos = response_json["items"]
         repo_list = [
             {
                 "Name": repo["name"],
-                "Description": repo["description"],
                 "Stars": repo["stargazers_count"],
                 "URL": repo["html_url"],
+                "Description": repo["description"],
             }
             for repo in repos
         ]
-        return repo_list
+        return pd.DataFrame(repo_list)
     else:
-        return []
+        return pd.DataFrame()
 
 
 def search_github(query):
@@ -44,9 +41,11 @@ def search_github(query):
     return repos
 
 
+
+
 # Create the Gradio interface
-input_box = gr.inputs.Textbox(lines=1, label="Enter search query:")
-output_table = gr.outputs.Table(label="Relevant GitHub Repositories")
+input_box = gr.Textbox(lines=1, label="Enter search query:")
+output_table = gr.Dataframe(label="Relevant GitHub Repositories")
 
 iface = gr.Interface(
     fn=search_github,
@@ -57,4 +56,4 @@ iface = gr.Interface(
 )
 
 # Launch the Gradio interface
-iface.launch()
+iface.launch(share=True)
