@@ -1,3 +1,4 @@
+import os
 import openai
 
 
@@ -33,7 +34,7 @@ class ChatApp:
 
 if __name__ == "__main__":
     # Replace with your OpenAI API key
-    API_KEY = ""
+    API_KEY = os.environ.get("OPENAI_API_KEY")
 
     # Initialize the ChatApp instance with the API key
     chat_app = ChatApp(API_KEY)

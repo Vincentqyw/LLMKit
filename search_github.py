@@ -16,15 +16,16 @@ def search_github_repos(query, sort='updated', order='desc', per_page=10):
         print(f"Error: Unable to fetch data from GitHub (Status Code: {response.status_code})")
         return None
 
-query = "machine learning"
-results = search_github_repos(query)
+if __name__ == "__main__":
+    query = "machine learning"
+    results = search_github_repos(query)
 
-if results:
-    for repo in results['items']:
-        print(f"Repository Name: {repo['name']}")
-        print(f"URL: {repo['html_url']}")
-        print(f"Stars: {repo['stargazers_count']}")
-        print(f"Forks: {repo['forks_count']}")
-        print(f"Updated at: {repo['updated_at']}")
-        print(f"Description: {repo['description']}\n")
+    if results:
+        for repo in results['items']:
+            print(f"Repository Name: {repo['name']}")
+            print(f"URL: {repo['html_url']}")
+            print(f"Stars: {repo['stargazers_count']}")
+            print(f"Forks: {repo['forks_count']}")
+            print(f"Updated at: {repo['updated_at']}")
+            print(f"Description: {repo['description']}\n")
 
