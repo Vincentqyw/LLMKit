@@ -2,6 +2,7 @@ import gradio as gr
 import requests
 import pandas as pd
 
+
 def get_github_repos(query):
     headers = {"Accept": "application/vnd.github+json"}
     params = {
@@ -13,7 +14,6 @@ def get_github_repos(query):
 
     GITHUB_API_URL = "https://api.github.com/search/repositories"
     response = requests.get(GITHUB_API_URL, headers=headers, params=params)
-
 
     response_json = response.json()
     print(response_json)
@@ -39,8 +39,6 @@ def search_github(query):
     search_query = " ".join(f"{keyword}" for keyword in keywords)
     repos = get_github_repos(search_query)
     return repos
-
-
 
 
 # Create the Gradio interface
