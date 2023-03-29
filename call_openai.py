@@ -26,9 +26,7 @@ class ChatApp:
 
         # Extract the assistant's message from the response and add it to the messages list
         assistant_message = response["choices"][0]["message"]
-        self.messages.append(
-            {"role": "system", "content": assistant_message.content}
-        )
+        self.messages.append({"role": "system", "content": assistant_message.content})
 
         # Return the assistant's message
         return assistant_message
