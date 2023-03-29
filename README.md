@@ -1,8 +1,7 @@
 # LLMKit
 Push the most relevant Github repositories to your inbox every day.
 
-## Getting Started
-To get started with LLMKit, simply clone this repository and follow the instructions provided in the respective folders for each tool.
+# Getting Started
 
 ## Installation
 ```shell
