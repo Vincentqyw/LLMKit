@@ -28,11 +28,20 @@ def analyze_source_code(
             + f"Please give an overview of the following program file with the file name {file_name} and the file code as ```{file_content}```"
         )
 
-        print(i_say)
-        llm_output = chatbot.chat(i_say)
+        user_message = {"role": "user", "content": i_say}
+        messages.append(user_message)
+        llm_output = chatbot.single_chat(messages)
+        messages.pop(-1)
         single_context = {"role": "system", "content": llm_output.content}
         messages.append(single_context)
-        print(llm_output)
+        print(llm_output.content)
+    all_file = ', '.join([file_name for file_name, file_content in repo_structure.items()][:file_number])
+    summary_prompt = f'According to your own analysis, summarize the overall function and structure of the program. Then use a markdown table to organize the functions of each file.（include {all_file}）。'
+
+    user_message = {"role": "user", "content": summary_prompt}
+    messages.append(user_message)
+    summary_output = chatbot.single_chat(messages)
+    print(summary_output.content)
 
 
 def fetch_directory_contents(base_url, path=""):
