@@ -11,13 +11,13 @@ class ChatApp:
         self.messages = [
             {
                 "role": "system",
-                "content": "You are a coding tutor bot to help user write and optimize python code.",
+                "content": "You are a coding tutor bot to help user summary, write and optimize python code.",
             },
         ]
 
     def chat(self, message):
         # Add the user's message to the messages list
-        self.messages.append({"role": "user", "content": message})
+        self.messages.append({"role": "system", "content": message})
 
         # Call the OpenAI API with the current messages to get a response
         response = openai.ChatCompletion.create(
@@ -26,9 +26,7 @@ class ChatApp:
 
         # Extract the assistant's message from the response and add it to the messages list
         assistant_message = response["choices"][0]["message"]
-        self.messages.append(
-            {"role": "assistant", "content": assistant_message.content}
-        )
+        self.messages.append({"role": "system", "content": assistant_message.content})
 
         # Return the assistant's message
         return assistant_message
