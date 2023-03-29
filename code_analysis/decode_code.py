@@ -1,11 +1,3 @@
-from predict import predict_no_ui
-from toolbox import (
-    CatchException,
-    report_execption,
-    write_results_to_file,
-    predict_no_ui_but_counting_down,
-)
-
 fast_debug = False
 
 
@@ -72,8 +64,6 @@ def analyze_source_code(
         chatbot.append(("Is it finished?", res))
         yield chatbot, history, msg
 
-
-@CatchException
 def analyze_project_itself(
     txt, top_p, temperature, chatbot, history, systemPromptTxt, WEB_PORT
 ):
@@ -131,8 +121,6 @@ def analyze_project_itself(
         chatbot.append(("Is it finished?", res))
         yield chatbot, history, "Normal"
 
-
-@CatchException
 def analyze_python_project(
     txt, top_p, temperature, chatbot, history, systemPromptTxt, WEB_PORT
 ):
@@ -173,7 +161,6 @@ def analyze_python_project(
     )
 
 
-@CatchException
 def analyze_c_project_header_files(
     txt, top_p, temperature, chatbot, history, systemPromptTxt, WEB_PORT
 ):
@@ -213,8 +200,6 @@ def analyze_c_project_header_files(
         systemPromptTxt,
     )
 
-
-@CatchException
 def analyze_c_project(
     txt, top_p, temperature, chatbot, history, systemPromptTxt, WEB_PORT
 ):
