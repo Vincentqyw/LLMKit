@@ -7,7 +7,7 @@ Push the most relevant Github repositories to your inbox every day.
 ```shell
 git clone https://github.com/tensorboy/LLMKit.git
 cd LLMKit
-pip install shell-gpt
+pip install -r requirements.txt
 ```
 You'll need an OpenAI API key, you can generate one [here](https://beta.openai.com/account/api-keys).
 
