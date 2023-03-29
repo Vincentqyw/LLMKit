@@ -4,7 +4,9 @@ import os
 import openai
 
 
-def analyze_source_code(repo_structure, chatbot, top_p=1.0, temperature=1.0, file_number=5):
+def analyze_source_code(
+    repo_structure, chatbot, top_p=1.0, temperature=1.0, file_number=5
+):
     systemPromptTxt = "Serve me as a programming assistant."
     import time
 
