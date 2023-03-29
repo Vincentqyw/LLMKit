@@ -19,5 +19,3 @@ We would like to express our gratitude to the open-source community, AI research
 
 ## Contribution
 If you have found a new repository, tool, or technique that is relevant to large language models and would like to add it to LLMKit, please submit a pull request or open an issue with the details.
-
-## Join us on our journey as we create powerful tools to revolutionize the world of AI and large language models!
