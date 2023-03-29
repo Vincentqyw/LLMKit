@@ -1,9 +1,6 @@
 # LLMKit
 Push the most relevant Github repositories to your inbox every day.
 
-## Overview
-### LLMKit collects the most relevant and recent deep learning and machine learning GitHub repositories on a daily basis.
-
 ## Getting Started
 To get started with LLMKit, simply clone this repository and follow the instructions provided in the respective folders for each tool.
 
