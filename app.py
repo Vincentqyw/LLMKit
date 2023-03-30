@@ -1,7 +1,45 @@
 import gradio as gr
 import requests
 import pandas as pd
+import markdown, mdtex2html, threading
+from show_math import convert as convert_math
+def text_divide_paragraph(text):
+    """
+        将文本按照段落分隔符分割开，生成带有段落标签的HTML代码。
+    """
+    if '```' in text:
+        # careful input
+        return text
+    else:
+        # wtf input
+        lines = text.split("\n")
+        for i, line in enumerate(lines):
+            lines[i] = "<p>"+lines[i].replace(" ", "&nbsp;")+"</p>"
+        text = "\n".join(lines)
+        return text
 
+def markdown_convertion(txt):
+    """
+        将Markdown格式的文本转换为HTML格式。如果包含数学公式，则先将公式转换为HTML格式。
+    """
+    if ('$' in txt) and ('```' not in txt):
+        return markdown.markdown(txt,extensions=['fenced_code','tables']) + '<br><br>' + \
+            markdown.markdown(convert_math(txt, splitParagraphs=False),extensions=['fenced_code','tables'])
+    else:
+        return markdown.markdown(txt,extensions=['fenced_code','tables'])
+
+def format_io(self, y):
+    """
+        将输入和输出解析为HTML格式。将y中最后一项的输入部分段落化，并将输出部分的Markdown和数学公式转换为HTML格式。
+    """
+    if y is None or y == []: return []
+    i_ask, gpt_reply = y[-1]
+    i_ask = text_divide_paragraph(i_ask) # 输入部分太自由，预处理一波
+    y[-1] = (
+        None if i_ask is None else markdown.markdown(i_ask, extensions=['fenced_code','tables']),
+        None if gpt_reply is None else markdown_convertion(gpt_reply)
+    )
+    return y
 
 def get_github_repos(query):
     headers = {"Accept": "application/vnd.github+json"}
