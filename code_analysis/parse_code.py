@@ -2,6 +2,25 @@ import requests
 
 import os
 import openai
+import gradio as gr
+from urllib.parse import urlparse
+
+
+def parse_github_link(github_link):
+    parsed_url = urlparse(github_link)
+
+    # Check if the link is a valid GitHub link
+    if parsed_url.netloc != "github.com":
+        return None
+
+    path_parts = parsed_url.path.strip("/").split("/")
+
+    # A valid GitHub link should have at least a username and a repository
+    if len(path_parts) < 2:
+        return None
+
+    username, repo_name = path_parts[:2]
+    return username, repo_name
 
 
 def analyze_source_code(
@@ -35,13 +54,16 @@ def analyze_source_code(
         single_context = {"role": "system", "content": llm_output.content}
         messages.append(single_context)
         print(llm_output.content)
-    all_file = ', '.join([file_name for file_name, file_content in repo_structure.items()][:file_number])
-    summary_prompt = f'According to your own analysis, summarize the overall function and structure of the program. Then use a markdown table to organize the functions of each file.（include {all_file}）。'
+    all_file = ", ".join(
+        [file_name for file_name, file_content in repo_structure.items()][:file_number]
+    )
+    summary_prompt = f"According to your own analysis, summarize the overall function and structure of the program. Then use a markdown table to organize the functions of each file.（include {all_file}）。"
 
     user_message = {"role": "user", "content": summary_prompt}
     messages.append(user_message)
     summary_output = chatbot.single_chat(messages)
     print(summary_output.content)
+    return summary_output.content
 
 
 def fetch_directory_contents(base_url, path=""):
@@ -111,24 +133,46 @@ class ChatApp:
         return assistant_message
 
 
-def fetch_github_repo_contents(user, repo):
-    base_url = f"https://api.github.com/repos/{user}/{repo}/contents"
+def generate_repo_summary(github_link):
+    repo_structure = fetch_github_repo_contents(github_link)
+    summary_of_code = analyze_source_code(repo_structure, chat_app)
+    return summary_of_code
+
+
+def fetch_github_repo_contents(github_link):
+    username, repo_name = parse_github_link(github_link)
+    print(f"Username: {username}\nRepository Name: {repo_name}")
+    base_url = f"https://api.github.com/repos/{username}/{repo_name}/contents"
     return fetch_directory_contents(base_url)
 
 
-# Replace "user" and "repo" with the desired GitHub user and repository names
-
 API_KEY = os.environ.get("OPENAI_API_KEY")
-
-# Initialize the ChatApp instance with the API key
 chat_app = ChatApp(API_KEY)
 
 user = "tensorboy"
 repo = "LLMKit"
-repo_structure = fetch_github_repo_contents(user, repo)
+
+# Create the Gradio interface
+input_repo = gr.Textbox(lines=1, label="Enter Github Link:")
+output_table = gr.Markdown(lines=10, label="Summary of Code:")
+
+
+iface = gr.Interface(
+    fn=generate_repo_summary,
+    inputs=input_repo,
+    outputs=output_table,
+    title="GitHub Repository Analyzer",
+    description="Summary A Github Repo.",
+)
+
+# Launch the Gradio interface
+iface.launch(share=True)
+# Replace "user" and "repo" with the desired GitHub user and repository names
+
+
+# Initialize the ChatApp instance with the API key
+
 
 # Print the repository structure
-for filename, content in repo_structure.items():
-    print(f"File: {filename}\nContent:\n{content}\n")
-
-analyze_source_code(repo_structure, chat_app)
+# for filename, content in repo_structure.items():
+#    print(f"File: {filename}\nContent:\n{content}\n")
