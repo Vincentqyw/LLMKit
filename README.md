@@ -1,6 +1,8 @@
 # LLMKit
 Push the most relevant Github repositories to your inbox every day.
 
+![Breakdown a Github repo](<image_url>)
+
 # Getting Started
 
 ## Installation

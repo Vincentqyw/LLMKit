@@ -154,7 +154,7 @@ repo = "LLMKit"
 
 # Create the Gradio interface
 input_repo = gr.Textbox(lines=1, label="Enter Github Link:")
-output_table = gr.Markdown(lines=10, label="Summary of Code:")
+output_table = gr.Textbox(lines=15, label="Summary of Code:")
 
 
 iface = gr.Interface(
