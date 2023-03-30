@@ -1,7 +1,7 @@
 # LLMKit
 Push the most relevant Github repositories to your inbox every day.
 
-![Breakdown a Github repo](<image_url>)
+![Breakdown a Github repo](<https://github.com/tensorboy/LLMKit/blob/dev/assets/code_analyzer.png>)
 
 # Getting Started
 
