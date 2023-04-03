@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you find this work useful in your method, you can cite the paper as below."
-title: HuggingGPT: LLMKit: Make Everything
+title: "LLMKit: Make Everything"
 authors:
   - family-names: An
     given-names: Wangpeng
