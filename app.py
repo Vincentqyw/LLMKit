@@ -93,17 +93,30 @@ def search_github(query):
     return repos
 
 
-# Create the Gradio interface
-input_box = gr.Textbox(lines=1, label="Enter search query:")
-output_table = gr.Dataframe(label="Relevant GitHub Repositories")
+if __name__ == "__main__":
+    input_box = gr.Textbox(lines=1, label="Enter search query:")
+    output_table = gr.Dataframe(label="Relevant GitHub Repositories")
 
-iface = gr.Interface(
-    fn=search_github,
-    inputs=input_box,
-    outputs=output_table,
-    title="GitHub Repository Search",
-    description="Search for GitHub repositories based on keywords.",
-)
+    iface = gr.Interface(
+        fn=search_github,
+        inputs=input_box,
+        outputs=output_table,
+        title="GitHub Repository Search",
+        description="Search for GitHub repositories based on keywords.",
+    )
 
-# Launch the Gradio interface
-iface.launch(share=True)
+    iface.launch(share=True)
+    # Create the Gradio interface
+    input_box = gr.Textbox(lines=1, label="Enter search query:")
+    output_table = gr.Dataframe(label="Relevant GitHub Repositories")
+
+    iface = gr.Interface(
+        fn=search_github,
+        inputs=input_box,
+        outputs=output_table,
+        title="GitHub Repository Search",
+        description="Search for GitHub repositories based on keywords.",
+    )
+
+    # Launch the Gradio interface
+    iface.launch(share=True)
