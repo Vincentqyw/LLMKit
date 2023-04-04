@@ -2,11 +2,11 @@
 Push the most relevant Github repositories to your inbox every day.
 
 ## Search all the github Repo
-![Breakdown a Github repo](<https://github.com/tensorboy/LLMKit/blob/dev/assets/search_github.png>)
+![Breakdown a Github repo](<assets/search_github.png>)
 
 
 ## Analyize a github repo:
-![Breakdown a Github repo](<https://github.com/tensorboy/LLMKit/blob/dev/assets/code_analyzer.png>)
+![Breakdown a Github repo](<assets/code_analyzer.png>)
 
 ## Generate a pdf and send it to you
 working on it
